@@ -15,4 +15,5 @@
     <string name="dolby_label">DOLBY ATMOS</string>
     <string name="noise_label">Noise cancellation</string>
     <string name="save_button">Save</string>
+    <string name="todo">TODO</string>
 </resources>
