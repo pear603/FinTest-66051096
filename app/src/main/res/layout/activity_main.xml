@@ -1,19 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="20dp"
+    android:background="@android:color/white">
 
+    <!-- Top back button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/headphone"
+        android:scaleType="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Headphone image on the right -->
+    <ImageView
+        android:id="@+id/imgHeadphone"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/headphone"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Section title (HEADPHONE) -->
     <TextView
+        android:id="@+id/tvSection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="HEADPHONE"
+        android:textAllCaps="true"
+        android:textColor="#6B6B6B"
+        android:textSize="12sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack" />
+
+    <!-- Model BZM-01 -->
+    <TextView
+        android:id="@+id/tvModel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="BZM-01"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvSection"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Bluetooth row: label + small status dot -->
+    <TextView
+        android:id="@+id/tvBluetoothLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@id/tvModel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Bluetooth Switch -->
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchBluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothLabel"
+        />
+
+    <!-- Small circular indicator to match screenshot -->
+<!--    <View-->
+<!--        android:id="@+id/viewBtDot"-->
+<!--        android:layout_width="12dp"-->
+<!--        android:layout_height="12dp"-->
+<!--        android:background="@drawable/headphone"-->
+<!--        app:layout_constraintBaseline_toBaselineOf="@id/tvBluetoothLabel"-->
+<!--        app:layout_constraintStart_toEndOf="@id/tvBluetoothLabel"-->
+<!--        android:layout_marginStart="10dp"/>-->
+
+    <!-- Battery label and percent -->
+    <TextView
+        android:id="@+id/tvBatteryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Battery"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@id/imgHeadphone"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvBatteryPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20%"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvBatteryLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Battery progress bar (horizontal) -->
+    <ProgressBar
+        android:id="@+id/progressBattery"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:progress="20"
+        android:max="100"
+        android:progressDrawable="@drawable/progressbar"
+        android:indeterminate="false"
+        app:layout_constraintTop_toBottomOf="@id/tvBatteryLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="12dp"/>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#EAEAEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBattery" />
+
+    <!-- Specs: left column title and right column value using a group -->
+    <!-- Frequency range -->
+    <TextView
+        android:id="@+id/tvFreqLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequency range"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        app:layout_constraintTop_toBottomOf="@id/divider2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/tvFreqValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6Hz - 22kHz"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvFreqLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Bluetooth version -->
+    <TextView
+        android:id="@+id/tvBtVerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth version"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        app:layout_constraintTop_toBottomOf="@id/tvFreqLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tvBtVerValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth 5.0"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvBtVerLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Power supply -->
+    <TextView
+        android:id="@+id/tvPowerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Power supply"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        app:layout_constraintTop_toBottomOf="@id/tvBtVerLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tvPowerValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5.0 V DC, 330mA"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvPowerLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Firmware -->
+    <TextView
+        android:id="@+id/tvFirmwareLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Firmware"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        app:layout_constraintTop_toBottomOf="@id/tvPowerLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tvFirmwareValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4824.13az"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvFirmwareLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#EAEAEA"
+        app:layout_constraintTop_toBottomOf="@id/tvFirmwareLabel"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Dolby Atmos toggle row -->
+
+    <TextView
+        android:id="@+id/tvDolbyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="DOLBY ATMOS"
+        android:textAllCaps="true"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchDolby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvDolbyLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:checked="true"
+        android:showText="false"/>
+
+    <!-- Noise cancellation toggle row -->
+    <TextView
+        android:id="@+id/tvNoiseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Noise cancellation"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDolbyLabel" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchNoise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvNoiseLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:checked="false"
+        android:showText="false"/>
+
+    <!-- Large Save button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="30dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        app:backgroundTint="@color/blue_600"
+        android:textColor="@android:color/white"/>
+
+        <!-- define blue_600 in colors.xml -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
